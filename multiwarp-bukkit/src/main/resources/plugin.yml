@@ -1,0 +1,38 @@
+api-version: 1.16
+author: Dev7ex
+database: false
+depend: [FacilisCommon]
+description: ${project.description}
+libraries: [ ]
+load: POSTWORLD
+loadbefore: [ ]
+main: com.dev7ex.multiwarp.MultiWarpPlugin
+name: MultiWarp
+prefix: MultiWarp
+softdepend: []
+version: ${project.version}
+website: https://github.com/Dev7ex/MultiWarp
+commands:
+  warp:
+    aliases: []
+    description: Main Command for all Warp Commands
+    permission: multiwarp.command.warp
+    usage: /warp
+permissions:
+  multiwarp.*:
+    default: op
+    description: 'All MultiWarp permissions, ideally given to administrators.'
+  multiwarp.command.warp:
+    default: op
+    description: Ability to run /warp help.
+  multiwarp.command.warp.*:
+    default: op
+    description: Ability to run all /warp commands.
+    children:
+      multiwarp.command.warp.create: true
+      multiwarp.command.warp.delete: true
+      multiwarp.command.warp.flag: true
+      multiwarp.command.warp.help: true
+      multiwarp.command.warp.info: true
+      multiwarp.command.warp.lock: true
+      multiwarp.command.warp.teleport: true

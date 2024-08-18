@@ -1,0 +1,86 @@
+{
+  "general": {
+    "translator": "Dev7ex",
+    "no-permission": "§cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe this is an error.",
+    "no-console-command": "%prefix% §7The command §a%command_name% §7can only be executed by a §aplayer!",
+    "no-player-command": "%prefix% §7The command §a%command_name% §7can only be executed from the §aconsole!",
+    "no-player-found": "%prefix% §7The player §a%player_name% §7was §cnot §7found",
+    "warp": {
+      "already-exists": "%prefix% §7A warp with the name §a%warp_name% §7already exists!",
+      "locked": "%prefix% §7The warp §a%warp_name% §7is currently §clocked",
+      "not-exists": "%prefix% §7The warp §a%warp_name% §7does not exist!",
+      "permission-removed": "%prefix% §7You have removed the permission for the warp §a%warp_name%§c",
+      "world-not-loaded": "%prefix% §7You cannot use the warp §a%warp_name% §7because the world is §cnot §7loaded!"
+    }
+  },
+  "commands": {
+    "warp": {
+      "create": {
+        "usage": "%prefix% §cUsage: /warp create <Name>",
+        "successfully-created": "%prefix% §7The warp §a%warp_name% §7has been created!"
+      },
+      "delete": {
+        "usage": "%prefix% §cUsage: /warp delete <Warp>",
+        "successfully-deleted": "%prefix% §7The warp §a%warp_name% §7has been §cdeleted§7!"
+      },
+      "flag": {
+        "usage": "%prefix% §cUsage: /warp flag <Warp> <Property> <Value>",
+        "not-existing": "%prefix% §7The flag §a%flag_name% §7does not exist!",
+        "invalid-value": "%prefix% §7The value §a%value% §7is not valid for the flag §a%flag_name%§7!",
+        "successfully-set": "%prefix% §7You have set the value §a%value% §7for the flag §a%flag_name%§7!"
+      },
+      "help": {
+        "message": [
+          "",
+          "§f§m                    §r§r %prefix% §f§m                    ",
+          "",
+          "§7» §7/warp §ecreate §7<Name>",
+          "§7» §7/warp §edelete §7<Warp>",
+          "§7» §7/warp §eflag §7<Warp> <Property> <Value>",
+          "§7» §7/warp §ehelp",
+          "§7» §7/warp §einfo §7<Warp>",
+          "§7» §7/warp §elist",
+          "§7» §7/warp §elock §7<Warp>",
+          "§7» §7/warp §eteleport §7<Warp>",
+          "",
+          "§f§m                    §r§r %prefix% §f§m                    ",
+          ""
+        ]
+      },
+      "info": {
+        "usage": "%prefix% §cUsage: /warp info <Warp>",
+        "message": [
+          "",
+          "§f§m               §r§r §e%warp_name% §f§m               ",
+          "",
+          "§7» §7Created by: §e%warp_creator_name%",
+          "§7» §7Created on: §e%creation_timestamp%",
+          "§7» §7Locked: %colored_locked%",
+          "§7» §7Permission: §a%permission%",
+          "§7» §7World: §a%world_name%",
+          "§7» §7X: §a%x%",
+          "§7» §7Y: §a%y%",
+          "§7» §7Z: §a%z%",
+          "§7» §7Pitch: §a%pitch%",
+          "§7» §7Yaw: §a%yaw%",
+          "",
+          "§f§m               §r§r §e%warp_name% §f§m               ",
+          ""
+        ]
+      },
+      "list": {
+        "usage": "%prefix% §cUsage: /warp list",
+        "message": "%prefix% §7Warps: %warp_names%"
+      },
+      "lock": {
+        "usage": "%prefix% §cUsage: /warp lock <Warp>",
+        "successfully-locked": "%prefix% §7The warp §a%warp_name% §7has been §clocked",
+        "successfully-unlocked": "%prefix% §7The warp §a%warp_name% §7has been §aunlocked"
+      },
+      "teleport": {
+        "usage": "%prefix% §cUsage: /warp teleport <Warp>",
+        "no-permission": "%prefix% §7You do §cnot §7have the permission to use the warp §a%warp_name%§7!"
+      }
+    }
+  }
+}
