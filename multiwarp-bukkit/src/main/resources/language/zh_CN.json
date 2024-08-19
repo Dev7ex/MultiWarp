@@ -1,0 +1,86 @@
+{
+    "general": {
+      "translator": "SnowCutieOwO",
+      "no-permission": "§c抱歉, 但你没有执行此命令的权限. 如果你坚信这不该出现, 请立即联系服务器管理员.",
+      "no-console-command": "%prefix% §7命令 §a%command_name% §7只能由§a玩家§7执行!",
+      "no-player-command": "%prefix% §7命令 §a%command_name% §7只能由§a控制台§7执行!",
+      "no-player-found": "%prefix% §7玩家 §a%player_name% §c未找到",
+      "warp": {
+        "already-exists": "%prefix% §7已经存在名为 §a%warp_name% §7的地标了!",
+        "locked": "%prefix% §7地标 §a%warp_name% §7目前§c已锁定",
+        "not-exists": "%prefix% §7地标 §a%warp_name% §7不存在!",
+        "permission-removed": "%prefix% §7你移除了地标 §a%warp_name%§c 的权限",
+        "world-not-loaded": "%prefix% §7你不能使用地标 §a%warp_name% §7, 该地标所处的世界§c尚未§7载入!"
+      }
+    },
+    "commands": {
+      "warp": {
+        "create": {
+          "usage": "%prefix% §c命令用法: /warp create <名称>",
+          "successfully-created": "%prefix% §7已创建地标 §a%warp_name%§7!"
+        },
+        "delete": {
+          "usage": "%prefix% §c命令用法: /warp delete <名称>",
+          "successfully-deleted": "%prefix% §7已§c删除§7地标 §a%warp_name%§7!"
+        },
+        "flag": {
+          "usage": "%prefix% §c命令用法: /warp flag <名称> <属性> <值>",
+          "not-existing": "%prefix% §7标志 §a%flag_name% §7不存在!",
+          "invalid-value": "%prefix% §7值 §a%value% §7对标志 §a%flag_name%§7 而言不是有效的!",
+          "successfully-set": "%prefix% §7成功将标志 §a%flag_name%§7 的值设置为了 §a%value%§7!"
+        },
+        "help": {
+          "message": [
+            "",
+            "§f§m                    §r§r %prefix% §f§m                    ",
+            "",
+            "§7» §7/warp §ecreate §7<地标名称>",
+            "§7» §7/warp §edelete §7<地标名称>",
+            "§7» §7/warp §eflag §7<地标名称> <属性> <值>",
+            "§7» §7/warp §ehelp",
+            "§7» §7/warp §einfo §7<地标名称>",
+            "§7» §7/warp §elist",
+            "§7» §7/warp §elock §7<地标名称>",
+            "§7» §7/warp §eteleport §7<地标名称>",
+            "",
+            "§f§m                    §r§r %prefix% §f§m                    ",
+            ""
+          ]
+        },
+        "info": {
+          "usage": "%prefix% §c命令用法: /warp info <地标名称>",
+          "message": [
+            "",
+            "§f§m               §r§r §e%warp_name% §f§m               ",
+            "",
+            "§7» §7创建玩家: §e%warp_creator_name%",
+            "§7» §7创建日期: §e%creation_timestamp%",
+            "§7» §7是否锁定: %colored_locked%",
+            "§7» §7所需权限: §a%permission%",
+            "§7» §7所处世界: §a%world_name%",
+            "§7» §7X: §a%x%",
+            "§7» §7Y: §a%y%",
+            "§7» §7Z: §a%z%",
+            "§7» §7俯仰角: §a%pitch%",
+            "§7» §7旋转角: §a%yaw%",
+            "",
+            "§f§m               §r§r §e%warp_name% §f§m               ",
+            ""
+          ]
+        },
+        "list": {
+          "usage": "%prefix% §c命令用法: /warp list",
+          "message": "%prefix% §7地标: %warp_names%"
+        },
+        "lock": {
+          "usage": "%prefix% §c命令用法: /warp lock <地标名称>",
+          "successfully-locked": "%prefix% §7地标 §a%warp_name% §c已被锁定",
+          "successfully-unlocked": "%prefix% §7地标 §a%warp_name% §a已被解锁"
+        },
+        "teleport": {
+          "usage": "%prefix% §c命令用法: /warp teleport <地标名称>",
+          "no-permission": "%prefix% §7你§c没有§7使用传送点 §a%warp_name%§7 的权限!"
+        }
+      }
+    }
+  }
