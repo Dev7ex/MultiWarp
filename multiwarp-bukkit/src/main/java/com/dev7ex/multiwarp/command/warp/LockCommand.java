@@ -6,6 +6,7 @@ import com.dev7ex.common.bukkit.command.completer.BukkitTabCompleter;
 import com.dev7ex.common.bukkit.plugin.BukkitPlugin;
 import com.dev7ex.multiwarp.MultiWarpPlugin;
 import com.dev7ex.multiwarp.api.bukkit.warp.BukkitWarp;
+import com.dev7ex.multiwarp.api.warp.WarpProperty;
 import com.dev7ex.multiwarp.translation.DefaultTranslationProvider;
 import com.dev7ex.multiwarp.warp.DefaultWarpProvider;
 import org.bukkit.command.CommandSender;
@@ -46,12 +47,14 @@ public class LockCommand extends BukkitCommand implements BukkitTabCompleter {
 
         if (!warp.isLocked()) {
             warp.setLocked(true);
+            warpProvider.getConfiguration().write(warp, WarpProperty.LOCKED, warp.isLocked());
             commandSender.sendMessage(translationProvider.getMessage(commandSender, "commands.warp.lock.successfully-locked")
                     .replaceAll("%prefix%", super.getConfiguration().getPrefix())
                     .replaceAll("%warp_name%", arguments[1]));
             return;
         }
         warp.setLocked(false);
+        warpProvider.getConfiguration().write(warp, WarpProperty.LOCKED, warp.isLocked());
         commandSender.sendMessage(translationProvider.getMessage(commandSender, "commands.warp.lock.successfully-unlocked")
                 .replaceAll("%prefix%", super.getConfiguration().getPrefix())
                 .replaceAll("%warp_name%", arguments[1]));
