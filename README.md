@@ -1,8 +1,8 @@
 ![Icon-Bild](resources/images/title-github.png)
 
 ![Latest Release](https://img.shields.io/github/v/release/Dev7ex/MultiWarp)
-![SpigotMC Downloads](https://img.shields.io/spiget/downloads/0?label=Downloads)
-![Spiget Rating](https://img.shields.io/spiget/rating/0?label=Rating&style=flat-square)
+![SpigotMC Downloads](https://img.shields.io/spiget/downloads/118996?label=Downloads)
+![Spiget Rating](https://img.shields.io/spiget/rating/118996?label=Rating&style=flat-square)
 ![Java](https://img.shields.io/badge/Java-17+-orange)
 ![Spigot](https://img.shields.io/badge/Spigot-1.16--1.20-red)
 [![CodeFactor](https://www.codefactor.io/repository/github/dev7ex/multiwarp/badge)](https://www.codefactor.io/repository/github/dev7ex/multiwarp)
