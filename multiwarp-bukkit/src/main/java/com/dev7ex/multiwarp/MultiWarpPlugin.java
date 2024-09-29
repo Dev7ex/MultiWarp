@@ -2,7 +2,6 @@ package com.dev7ex.multiwarp;
 
 import com.dev7ex.common.bukkit.plugin.BukkitPlugin;
 import com.dev7ex.common.bukkit.plugin.ConfigurablePlugin;
-import com.dev7ex.common.bukkit.plugin.PluginIdentification;
 import com.dev7ex.common.bukkit.plugin.statistic.PluginStatisticProperties;
 import com.dev7ex.multiwarp.api.MultiWarpApiProvider;
 import com.dev7ex.multiwarp.api.bukkit.MultiWarpBukkitApi;
@@ -12,12 +11,8 @@ import com.dev7ex.multiwarp.warp.DefaultWarpConfiguration;
 import com.dev7ex.multiwarp.warp.DefaultWarpProvider;
 import lombok.AccessLevel;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
 
 /**
  * @author Dev7ex
