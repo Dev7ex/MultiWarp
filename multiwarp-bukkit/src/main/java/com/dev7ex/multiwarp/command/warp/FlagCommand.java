@@ -13,11 +13,10 @@ import com.dev7ex.multiwarp.api.warp.WarpProperty;
 import com.dev7ex.multiwarp.translation.DefaultTranslationProvider;
 import com.dev7ex.multiwarp.warp.DefaultWarpConfiguration;
 import com.dev7ex.multiwarp.warp.DefaultWarpProvider;
-import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -150,7 +149,7 @@ public class FlagCommand extends BukkitCommand implements BukkitTabCompleter {
                 return List.of("multiwarp.access." + arguments[1], "null");
 
             case WORLD_NAME:
-                return Bukkit.getWorlds().stream().map(WorldInfo::getName).toList();
+                return Bukkit.getWorlds().stream().map(World::getName).toList();
 
             case X:
                 return Collections.singletonList(String.valueOf(player.getLocation().getX()));
