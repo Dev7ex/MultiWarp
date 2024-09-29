@@ -33,6 +33,7 @@ public class WarpCommand extends BukkitCommand implements BukkitTabCompleter {
         super.registerSubCommand(new ListCommand(plugin));
         super.registerSubCommand(new LockCommand(plugin));
         super.registerSubCommand(new TeleportCommand(plugin));
+        super.registerSubCommand(new VersionCommand(plugin));
     }
 
     @Override
