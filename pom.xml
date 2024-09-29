@@ -6,7 +6,7 @@
 
     <groupId>com.dev7ex</groupId>
     <artifactId>multiwarp</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>MultiWarp</name>
