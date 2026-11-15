@@ -1,3 +1,0 @@
-Adding Chinese Translation (zh_CN.json)
-Thanks to https://github.com/SnowCutieOwO
-Fixing the bug where a warp lock is not saved
