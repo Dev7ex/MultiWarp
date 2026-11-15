@@ -4,6 +4,7 @@ import com.dev7ex.multicommon.api.configuration.ConfigurationHolder;
 import com.dev7ex.multiwarp.api.localization.WarpLocalizationRegistry;
 import com.dev7ex.multiwarp.api.module.WarpModuleManager;
 import com.dev7ex.multiwarp.api.warp.WarpFactory;
+import com.dev7ex.multiwarp.api.warp.WarpManager;
 import com.dev7ex.multiwarp.api.warp.WarpRegistry;
 import com.dev7ex.multiwarp.api.warp.WarpRepository;
 import org.bukkit.NamespacedKey;
@@ -50,6 +51,11 @@ public interface MultiWarpApi extends Plugin, ConfigurationHolder {
     WarpFactory getWarpFactory();
 
     void setWarpFactory(@NotNull final WarpFactory warpFactory);
+
+    @NotNull
+    WarpManager getWarpManager();
+
+    void setWarpManager(@NotNull final WarpManager warpManager);
 
     WarpRegistry getWarpRegistry();
 
