@@ -14,7 +14,7 @@
     <url>https://github.com/Dev7ex/MultiWarp</url>
 
     <modules>
-        <module>multiwarp-bukkit</module>
+        <module>multiwarp-paper</module>
         <module>multiwarp-api</module>
     </modules>
 
