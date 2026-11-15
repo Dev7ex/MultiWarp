@@ -1,0 +1,283 @@
+{
+  "command": {
+    "warp": {
+      "create": {
+        "usage": "%prefix% §cVerwendung: /warp create <Name>",
+        "starting": "%prefix% §7Der §eWarp %warp_name% §7wird erstellt...",
+        "cancelled": "%prefix% §7Das §aerstellen §7des §eWarp %warp_colored_name% §7wurde §cabgebrochen",
+        "finishing": "%prefix% §7Der §eWarp %warp_colored_name% §7wurde erfolgreich erstellt"
+      },
+      "delete": {
+        "usage": "%prefix% §cVerwendung: /warp delete <Warp>",
+        "starting": "%prefix% §7Der §eWarp %warp_colored_name% §7wird gelöscht...",
+        "cancelled": "%prefix% §7Das §clöschen §7des §eWarp %warp_colored_name% §7wurde §cabgebrochen",
+        "finishing": "%prefix% §7Der §eWarp %warp_colored_name% §7wurde erfolgreich gelöscht"
+      },
+      "help": {
+        "usage": "%prefix% §cVerwendung: /warp help <Seite>",
+        "1": [
+          {
+            "text": "§7» §7/warp §ecreate §7<Name>",
+            "hover": "§7Erstellt einen neuen benutzerdefinierten §eWarp \n \n§9Beispiel: §7/warp create spawn \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp create "}
+          },
+          {
+            "text": "§7» §7/warp §edelete §7<Warp>",
+            "hover": "§7Löscht einen existierenden §eWarp \n \n§9Beispiel: §7/warp delete spawn \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp delete "}
+          },
+          {
+            "text": "§7» §7/warp §ehelp §7<Seite>",
+            "hover": "§7Zeigt eine Hilfeseite an \n \n§9Beispiel: §7/warp help 1 \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp help "}
+          },
+          {
+            "text": "§7» §7/warp §einfo §7<Warp> <Seite>",
+            "hover": "§7Zeigt Informationen zu einem §eWarp \n \n§9Beispiel: §7/warp info spawn 1 \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp info "}
+          },
+          {
+            "text": "§7» §7/warp §elist",
+            "hover": "§7Erstellt eine Liste mit allen §eWarps \n \n§9Beispiel: §7/warp list \n \n§a§n§oKlicke um diesen Befehl auszuführen",
+            "click": {"action": "RUN_COMMAND", "text": "/warp list"}
+          },
+          {
+            "text": "§7» §7/warp §elock §7<Warp>",
+            "hover": "§7Sperrt einen existierenden §eWarp \n \n§9Beispiel: §7/warp lock spawn \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp lock "}
+          },
+          {"text": ""},
+          {"text": "§eTipp: §7Verwende §eTab §7für Auto-Vervollständigung!"},
+          {"text": "§eTipp: §7Verwende die §ePfeile §7zum Navigieren"},
+          {"text": ""}
+        ],
+        "2": [
+          {
+            "text": "§7» §7/warp §eteleport §7<Selector> <Warp>",
+            "hover": "§7Teleportiert dich oder/und andere zu einem §eWarp \n \n§9Beispiel: \n§7/warp teleport @a spawn \n§7/warp teleport spawn \n§7/warp teleport Dev7ex spawn \n \n§9Parameter: \n§8» §7@a §8- §7Alle Spieler \n§8» §7@e §8- §7Alle Entities \n§8» §7@p §8- §7Den nächsten Spieler \n§8» §7@r §8- §7Einen Zufälligen Spieler \n§8» §7@s §8- §7Der Spieler der diesen Befehl ausführt \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp teleport "}
+          },
+          {
+            "text": "§7» §7/warp §eversion §7<Check | Help | Info | Report>",
+            "hover": "§7Bietet die Möglichkeit, nach Updates zu suchen und Fehler zu melden \n \n§9Info: §7Verwende die Hilfe seite für weitere Informationen \n \n§a§n§oKlicke um die Hilfe seite zu öffnen",
+            "click": {"action": "SUGGEST_COMMAND", "text": "/warp version "}
+          },
+          {"text": ""},
+          {"text": "§eTipp: §7Verwende §eTab §7für Auto-Vervollständigung!"},
+          {"text": "§eTipp: §7Verwende die §ePfeile §7zum Navigieren"},
+          {"text": ""}
+        ]
+      },
+      "info": {
+        "usage": "%prefix% §cVerwendung: §7/warp info <Name>",
+        "message": {
+          "1": [
+            {
+              "text": "§7» §eName: §f%warp_name%",
+              "hover": "§7Der Name des Warp"
+            },
+            {
+              "text": "§7» §eAnzeigename: §f%warp_display_name%",
+              "hover": "§7Der Anzeigename des Warp"
+            },
+            {
+              "text": "§7» §eFarbe: §f%warp_color%",
+              "hover": "§7Die Farbe des Warp"
+            },
+            {
+              "text": "§7» §eIcon: §f%warp_icon%",
+              "hover": "§7Das Icon des Warp"
+            },
+            {
+              "text": "§7» §eErsteller: §f%warp_creator_name%",
+              "hover": "§7Der Ersteller des Warps"
+            },
+            {
+              "text": "§7» §eErstellt am: §f%warp_registration_timestamp%",
+              "hover": "§7Wann dieser Warp erstellt wurde"
+            },
+            {"text": ""},
+            {"text": "§eTipp: §7Verwende §fTab §7für Auto-Vervollständigung!"},
+            {"text": "§eTipp: §7Verwende die §fPfeile §7zum Navigieren"},
+            {"text": ""}
+          ],
+          "2": [
+            {
+              "text": "§7» §eGesperrt: §f%warp_locked%",
+              "hover": "§7Zeigt ob der Warp gesperrt ist"
+            },
+            {
+              "text": "§7» §ePermission: §f%warp_permission%",
+              "hover": "§7Die benötigte Berechtigung um den Warp verwenden zu können"
+            },
+            {
+              "text": "§7» §eWelt: §f%warp_world_name%",
+              "hover": "§7Die Welt in der der Warp liegt"
+            },
+            {
+              "text": "§7» §ePosition: §7X: §f%warp_x% §7| Y: §f%warp_y% §7| Z: §f%warp_z%",
+              "hover": "§7Die Position dieses Warps"
+            },
+            {
+              "text": "§7» §eRotation: §7Yaw: §f%warp_yaw% §7| Pitch: §f%warp_pitch%",
+              "hover": "§7Die Rotation dieses Warps"
+            },
+            {"text": ""},
+            {"text": "§eTipp: §7Verwende §fTab §7für Auto-Vervollständigung!"},
+            {"text": "§eTipp: §7Verwende die §fPfeile §7zum Navigieren"},
+            {"text": ""}
+          ]
+        }
+      },
+      "list": {
+        "usage": "%prefix% §cVerwendung: /warp list",
+        "message": "%prefix% §7Warps: %warp_display_names%"
+      },
+      "lock": {
+        "usage": "%prefix% §cVerwendung: /warp lock <Name>",
+        "locked": "%prefix% §7Der Warp %warp_colored_name% §7wurde §cgesperrt",
+        "unlocked": "%prefix% §7Der Warp %warp_colored_name% §7wurde §aentsperrt"
+      },
+      "teleport": {
+        "usage": {
+          "admin": "%prefix% §cVerwendung: /warp teleport <Selector> <Warp>",
+          "user": "%prefix% §cVerwendung: /warp teleport <Warp>"
+        }
+      },
+      "version": {
+        "check": {
+          "usage": "%prefix% §cVerwendung: /warp version check",
+          "update-available": "%prefix% §8» §aUpdate verfügbar! §7Es gibt eine neue Version.",
+          "up-to-date": "%prefix% §8» §aPlugin ist aktuell! §7Du nutzt die neueste Version.",
+          "pre-release-warning": "%prefix% §8» §eAchtung! §7Du verwendest eine Vorab-/inoffizielle Version."
+        },
+        "help": {
+          "usage": "%prefix% §cVerwendung: /warp version help <Seite>",
+          "1": [
+            {
+              "text": "§7» §7/warp version §bcheck",
+              "hover": "§7Prüft, ob eine neue Version verfügbar ist \n \n§9Beispiel: §7/warp version check \n \n§a§n§oKlicke um diesen Befehl auszuführen",
+              "click": {"action": "RUN_COMMAND", "text": "/warp version check "}
+            },
+            {
+              "text": "§7» §7/warp version §bhelp §7<Seite>",
+              "hover": "§7Zeigt eine Hilfeseite an. \n \n§9Beispiel: §7/warp version help 1 \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+              "click": {"action": "SUGGEST_COMMAND", "text": "/warp version help "}
+            },
+            {
+              "text": "§7» §7/warp version §binfo",
+              "hover": "§7Zeigt detaillierte Informationen über die installierte Plugin-Version \n \n§9Beispiel: \n§7/warp version info \n \n§a§n§oKlicke um diesen Befehl auszuführen",
+              "click": {"action": "RUN_COMMAND", "text": "/warp version info "}
+            },
+            {
+              "text": "§7» §7/warp version §breport",
+              "hover": "§7Erstellt einen Bericht, um Fehler oder Probleme zu melden \n \n§9Beispiel: §7/warp backup help 1 \n \n§a§n§oKlicke um diesen Befehl auszuführen",
+              "click": {"action": "RUN_COMMAND", "text": "/warp version report "}
+            },
+            {"text": ""},
+            {"text": "§bTipp: §7Verwende §eTab §7für Auto-Vervollständigung!"},
+            {"text": "§bTipp: §7Verwende die §ePfeile §7zum Navigieren"}
+          ]
+        },
+        "info": {
+          "usage": "%prefix% §cVerwendung: /warp version info",
+          "message": {
+            "1": [
+              {
+                "text": "§7Entwickler: §bDev7ex",
+                "hover": "§8» §bDev7ex §8– §7Gründer & Hauptentwickler von §eMultiwarp \n \n§a§n§oKlicke, um dem Discord beizutreten",
+                "click": { "action": "OPEN_URL", "text": "https://discord.dev7ex.com" }
+              },
+              {
+                "text": "§7Mitwirkende: §b%authors%",
+                "hover": "§8» §7Unterstützer & Co-Entwickler von §eMultiwarp \n§8» §7Vielen Dank für eure Beiträge!"
+              },
+              {
+                "text": "§7Plugin-Version: §b%plugin_version%",
+                "hover": "§8» §7Aktuelle Version von §eMultiwarp \n§8» §7Für Bugfixes & Features: §e/warp version report"
+              },
+              {
+                "text": "§7Server Software: §b%server_software%",
+                "hover": "§8» §7Die eingesetzte Server-Plattform \n§8» §bBeispiel: §ePaper, Purpur"
+              },
+              {
+                "text": "§7Minecraft-Version: §b%server_version%",
+                "hover": "§8» §7Aktuelle §bMinecraft §7Server-Version \n§8» §7Wichtig für Kompatibilität mit Plugins"
+              },
+              {
+                "text": "§7Java-Version: §b%java_version%",
+                "hover": "§8» §7Ausführende §bJava Runtime \n§8» §7Empfohlen: §eJava ${project.source.version} oder höher"
+              },
+              {
+                "text": "§7Betriebssystem: §b%os_name% §8(§7%os_arch%§8)",
+                "hover": "§8» §7Betriebssystem des Servers \n§8» §bBeispiel: §eLinux x64, Windows ARM"
+              },
+              {
+                "text": "§7Nützliche Links: §bModrinth",
+                "hover": "§8» §7Zur §bPlugin-Seite §7auf Modrinth \n \n §a§oKlicke, um die Seite zu öffnen",
+                "click": { "action": "OPEN_URL", "text": "https://modrinth.com/plugin/multiwarp" }
+              }
+            ]
+          }
+        },
+        "report": {
+          "usage": "%prefix% §cVerwendung: /warp version report",
+          "starting": "%prefix% §7Es wird ein Server Log erstellt...",
+          "failed": "%prefix% §7Es ist ein Fehler aufgetreten beim erstellen des Logs",
+          "finishing": "%prefix% §7Es wurde erfolgreich ein Server Log erstellt"
+        }
+      }
+    }
+  },
+  "format": {
+    "date": "dd.MM.yyyy",
+    "dateTime": "dd.MM.yyyy-HH:mm:ss",
+    "time": "HH:mm:ss"
+  },
+  "message": {
+    "no-permission": "§cEs tut mir leid, aber Sie haben nicht die Berechtigung, diesen Befehl auszuführen. Bitte wenden Sie sich an die Serveradministratoren, wenn Sie glauben, dass dies ein Fehler ist.",
+    "no-console-command": "%prefix% §cDer Befehl §6%command_name% §ckann nur von einem Spieler ausgeführt werden!",
+    "no-player-command": "%prefix% §cDer Befehl §6%command_name% §ckann nur von der Konsole ausgeführt werden!",
+    "no-player-found": "%prefix% §cDer Spieler §6%player_name% §cwurde nicht gefunden",
+    "layout": {
+      "header": [
+        {"text": " "},
+        {"text": "§8§m                         §r§r %placeholder% §8§m                         §8"},
+        {"text": " "}
+      ],
+      "footer": [
+        {"text": " "},
+        {"text": "§8§m                         §r§r %placeholder% §8§m                         §8"},
+        {"text": " "}
+      ]
+    },
+    "pagination": {
+      "indicator": "§7Seite: ",
+      "previous": "§7Vorherige Seite",
+      "next": "§7Nächste Seite",
+      "goto": "§7Gehe zu Seite: §a%page_index%",
+      "not-found": "%prefix% §cDie seite §6%page% §cwurde nicht gefunden",
+      "out-of-range": "%prefix% §cUngültige Seite. Gültiger Bereich: 1 - %maximum_pages%"
+    },
+    "warp": {
+      "not-active": "%prefix% §7Der Warp %warp_colored_display_name% §7ist nicht verfügbar",
+      "already-exists": "%prefix% §7Es existiert bereits ein Warp mit dem Namen §a%warp_colored_display_name%§7",
+      "not-exists": "%prefix% §cDer Warp §6%warp_name% §cexistiert nicht§7"
+    }
+  },
+  "meta": {
+    "author": "§aDev7ex",
+    "website": "§9https://github.com/Dev7ex",
+    "contact": "§9https://discord.dev7ex.com",
+    "contributors": [
+      "§eChatGPT"
+    ],
+    "notes": "§7Sprachdatei für §eMultiWarp §7von §aDev7ex",
+    "file-version": "§a1.0.0",
+    "supported-plugin-version": {
+      "min": "§a1.1.0-SNAPSHOT",
+      "max": "§a1.1.0-SNAPSHOT"
+    },
+    "last-update": 1750275645461
+  }
+}

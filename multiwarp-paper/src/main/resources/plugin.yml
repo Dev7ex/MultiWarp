@@ -1,0 +1,20 @@
+api-version: 1.17
+author: Dev7ex
+database: false
+depend: [ MultiCommon ]
+description: ${project.description}
+libraries: [ ]
+load: POSTWORLD
+loadbefore: [ ]
+main: com.dev7ex.multiwarp.MultiWarpPlugin
+name: MultiWarp
+prefix: MultiWarp
+softdepend: [ ]
+version: ${project.version}
+website:
+commands:
+  warp:
+    aliases: [ multiwarp ]
+    description: Main Command for all Warp Commands
+    permission: multiwarp.command.warp
+    usage: /warp
