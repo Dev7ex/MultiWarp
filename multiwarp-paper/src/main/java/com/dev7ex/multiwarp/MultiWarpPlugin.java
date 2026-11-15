@@ -8,6 +8,7 @@ import com.dev7ex.multiwarp.api.localization.WarpLocalizationRegistry;
 import com.dev7ex.multiwarp.api.module.WarpModuleManager;
 import com.dev7ex.multiwarp.api.permission.MultiWarpPermission;
 import com.dev7ex.multiwarp.api.warp.WarpFactory;
+import com.dev7ex.multiwarp.api.warp.WarpManager;
 import com.dev7ex.multiwarp.api.warp.WarpRegistry;
 import com.dev7ex.multiwarp.api.warp.WarpRepository;
 import com.dev7ex.multiwarp.command.WarpCommand;
@@ -15,6 +16,8 @@ import com.dev7ex.multiwarp.listener.plugin.MultiWarpFileChangeListener;
 import com.dev7ex.multiwarp.localization.DefaultWarpLocalizationRegistry;
 import com.dev7ex.multiwarp.module.DefaultWarpModuleManager;
 import com.dev7ex.multiwarp.warp.DefaultWarpFactory;
+import com.dev7ex.multiwarp.warp.DefaultWarpManager;
+import com.dev7ex.multiwarp.warp.DefaultWarpRegistry;
 import com.dev7ex.multiwarp.warp.DefaultWarpRepository;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,6 +45,7 @@ public class MultiWarpPlugin extends AdvancedPlugin implements MultiWarpApi {
     private WarpRegistry warpRegistry;
 
     private WarpFactory warpFactory;
+    private WarpManager warpManager;
 
     private File languageDirectory;
     private File logDirectory;
@@ -110,11 +114,13 @@ public class MultiWarpPlugin extends AdvancedPlugin implements MultiWarpApi {
     @Override
     public void registerManagers() {
         this.moduleManager = new DefaultWarpModuleManager();
+        this.warpManager = new DefaultWarpManager(this);
     }
 
     @Override
     public void registerModules() {
         this.moduleManager.register(this.localizationRegistry = new DefaultWarpLocalizationRegistry(this));
+        this.moduleManager.register(this.warpRegistry = new DefaultWarpRegistry(this));
     }
 
     @Override
