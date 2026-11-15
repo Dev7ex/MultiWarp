@@ -2,6 +2,7 @@
 package com.dev7ex.multiwarp.warp;
 
 import com.dev7ex.multiwarp.api.warp.Warp;
+import com.dev7ex.multiwarp.api.warp.WarpLocation;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,5 +24,10 @@ public class DefaultWarp implements Warp {
 
     @NotNull
     private String displayName;
+
+    @NotNull
+    private WarpLocation location;
+
+    private boolean locked;
 
 }

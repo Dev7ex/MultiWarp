@@ -18,6 +18,15 @@ public interface Warp extends Comparable<Warp>, Cloneable {
 
     void setDisplayName(@NotNull final String displayName);
 
+    @NotNull
+    WarpLocation getLocation();
+
+    void setLocation(@NotNull final WarpLocation location);
+
+    boolean isLocked();
+
+    void setLocked(final boolean locked);
+
     @Override
     default int compareTo(@NotNull final Warp warp) {
         return this.getName().compareTo(warp.getName());
