@@ -14,11 +14,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -42,6 +45,7 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
     private static final String PITCH_KEY = "pitch";
 
     private final MultiWarpApi multiWarpApi;
+    private boolean backupPending;
 
     public DefaultWarpRepository(@NotNull final MultiWarpApi multiWarpApi) {
         super(multiWarpApi);
@@ -54,6 +58,10 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
         final File temporaryFile = new File(file.getParentFile(), file.getName() + ".tmp");
 
         try {
+            if (this.backupPending) {
+                this.multiWarpApi.getLogger().info(String.format("Created backup %s before saving %s", this.createBackup().getName(), file.getName()));
+                this.backupPending = false;
+            }
             ConfigurationProvider.getProvider(super.getProvider()).save(super.getFileConfiguration(), temporaryFile);
 
             try {
@@ -156,32 +164,45 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
     @Override
     public void sanitize() {
         final FileConfiguration configuration = super.getFileConfiguration();
+        final Map<String, Object> snapshot = new LinkedHashMap<>(configuration.self);
         final List<String> invalidNames = new ArrayList<>();
-
-        for (final String name : configuration.getKeys()) {
-            final Optional<Warp> warp = this.load(name);
-
-            if (warp.isEmpty()) {
-                invalidNames.add(name);
-                continue;
-            }
-            configuration.set(name, this.serializeWarp(warp.get()));
-        }
+        final File file = super.getConfigurationFile();
 
         if (configuration.getKeys().isEmpty()) {
             return;
         }
-        final File file = super.getConfigurationFile();
-        final File backupFile = new File(file.getParentFile(), String.format("%s.%d.bak", file.getName(), System.currentTimeMillis()));
+        File backupFile = null;
 
         try {
-            if (!invalidNames.isEmpty()) {
-                Files.copy(file.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                invalidNames.forEach(this::removeEntry);
+            for (final String name : configuration.getKeys()) {
+                final Optional<Warp> warp = this.load(name);
+
+                if (warp.isEmpty()) {
+                    invalidNames.add(name);
+                    continue;
+                }
+                configuration.set(name, this.serializeWarp(warp.get()));
             }
+
+            if (invalidNames.isEmpty()) {
+                final StringWriter writer = new StringWriter();
+                ConfigurationProvider.getProvider(super.getProvider()).save(configuration, writer);
+
+                if (Arrays.equals(writer.toString().getBytes(StandardCharsets.UTF_8), Files.readAllBytes(file.toPath()))) {
+                    return;
+                }
+            }
+            backupFile = this.createBackup();
+
+            invalidNames.forEach(this::removeEntry);
             this.saveFile();
 
         } catch (final IOException | RuntimeException exception) {
+            if (backupFile == null) {
+                configuration.self.clear();
+                configuration.self.putAll(snapshot);
+                this.backupPending = true;
+            }
             this.multiWarpApi.getLogger().log(Level.SEVERE, String.format("Can't sanitize File %s", file.getName()), exception);
             return;
         }
@@ -189,7 +210,17 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
         if (!invalidNames.isEmpty()) {
             this.multiWarpApi.getLogger().warning(String.format("Removed: [%d] invalid Warps from %s (backup: %s)",
                     invalidNames.size(), file.getName(), backupFile.getName()));
+            return;
         }
+        this.multiWarpApi.getLogger().info(String.format("Normalized Warps in %s (backup: %s)", file.getName(), backupFile.getName()));
+    }
+
+    private @NotNull File createBackup() throws IOException {
+        final File file = super.getConfigurationFile();
+        final File backupFile = new File(file.getParentFile(), String.format("%s.%d.bak", file.getName(), System.currentTimeMillis()));
+
+        Files.copy(file.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        return backupFile;
     }
 
     private void applyWithRollback(@NotNull final Map<String, Object> changes) {
