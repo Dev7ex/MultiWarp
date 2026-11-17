@@ -29,7 +29,7 @@ public class DefaultWarpManager implements WarpManager {
         this.checkAbsent(name);
 
         final Warp warp = this.multiWarpApi.getWarpFactory().createWarp(name, location);
-        this.multiWarpApi.getWarpRepository().save(warp);
+        this.multiWarpApi.getWarpRepository().create(warp);
         this.multiWarpApi.getWarpRegistry().register(warp);
         return warp;
     }
@@ -82,7 +82,7 @@ public class DefaultWarpManager implements WarpManager {
             case LOCKED -> warpFactory.createWarp(warp.getName(), warp.getDisplayName(), warp.getLocation(), (Boolean) value);
             default -> throw new IllegalArgumentException(String.format("Unsupported property: %s", property));
         };
-        this.multiWarpApi.getWarpRepository().save(updatedWarp);
+        this.multiWarpApi.getWarpRepository().update(updatedWarp);
         this.multiWarpApi.getWarpRegistry().register(updatedWarp);
     }
 
@@ -94,7 +94,7 @@ public class DefaultWarpManager implements WarpManager {
     }
 
     private @NotNull Warp getExistingWarp(@NotNull final String name) {
-        return this.multiWarpApi.getWarpRegistry().getWarp(name).orElseThrow(() ->
+        return this.multiWarpApi.getWarpRegistry().find(name).orElseThrow(() ->
                 new IllegalArgumentException(String.format("Warp does not exist: %s", name)));
     }
 

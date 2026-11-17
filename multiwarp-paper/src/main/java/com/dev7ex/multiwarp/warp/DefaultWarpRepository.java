@@ -80,9 +80,22 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
     }
 
     @Override
-    public void save(@NotNull final Warp warp) {
+    public void create(@NotNull final Warp warp) {
         this.checkKey(warp.getName());
 
+        if (this.find(warp.getName()).isPresent()) {
+            throw new IllegalArgumentException(String.format("Warp already exists in storage: %s", warp.getName()));
+        }
+        this.applyWithRollback(Collections.singletonMap(warp.getName(), this.serializeWarp(warp)));
+    }
+
+    @Override
+    public void update(@NotNull final Warp warp) {
+        this.checkKey(warp.getName());
+
+        if (!super.getFileConfiguration().contains(warp.getName())) {
+            throw new IllegalArgumentException(String.format("Warp does not exist in storage: %s", warp.getName()));
+        }
         this.applyWithRollback(Collections.singletonMap(warp.getName(), this.serializeWarp(warp)));
     }
 
@@ -105,19 +118,19 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
     }
 
     @Override
-    public boolean contains(@NotNull final String name) {
+    public boolean exists(@NotNull final String name) {
         return (this.isValidKey(name)) && (super.getFileConfiguration().contains(name));
     }
 
     @Override
-    public @NotNull Optional<Warp> load(@NotNull final String name) {
+    public @NotNull Optional<Warp> find(@NotNull final String name) {
         if (!this.isValidKey(name)) {
             this.multiWarpApi.getLogger().warning(String.format("Skipping Warp %s: invalid storage key", name));
             return Optional.empty();
         }
 
         if (!(super.getFileConfiguration().get(name) instanceof final FileConfiguration section)) {
-            if (this.contains(name)) {
+            if (this.exists(name)) {
                 this.multiWarpApi.getLogger().warning(String.format("Skipping Warp %s: invalid format", name));
             }
             return Optional.empty();
@@ -154,15 +167,15 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
     }
 
     @Override
-    public @NotNull Collection<Warp> loadAll() {
+    public @NotNull Collection<Warp> findAll() {
         return super.getFileConfiguration().getKeys().stream()
-                .map(this::load)
+                .map(this::find)
                 .flatMap(Optional::stream)
                 .toList();
     }
 
     @Override
-    public void sanitize() {
+    public void cleanup() {
         final FileConfiguration configuration = super.getFileConfiguration();
         final Map<String, Object> snapshot = new LinkedHashMap<>(configuration.self);
         final List<String> invalidNames = new ArrayList<>();
@@ -175,7 +188,7 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
 
         try {
             for (final String name : configuration.getKeys()) {
-                final Optional<Warp> warp = this.load(name);
+                final Optional<Warp> warp = this.find(name);
 
                 if (warp.isEmpty()) {
                     invalidNames.add(name);
@@ -203,7 +216,7 @@ public class DefaultWarpRepository extends Configuration implements WarpReposito
                 configuration.self.putAll(snapshot);
                 this.backupPending = true;
             }
-            this.multiWarpApi.getLogger().log(Level.SEVERE, String.format("Can't sanitize File %s", file.getName()), exception);
+            this.multiWarpApi.getLogger().log(Level.SEVERE, String.format("Can't clean up File %s", file.getName()), exception);
             return;
         }
 
