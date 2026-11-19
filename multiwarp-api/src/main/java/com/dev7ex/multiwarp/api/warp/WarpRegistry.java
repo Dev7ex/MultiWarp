@@ -4,6 +4,7 @@ import com.dev7ex.multiwarp.api.module.WarpModule;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,9 +20,12 @@ public interface WarpRegistry extends WarpModule {
     boolean isRegistered(@NotNull final String name);
 
     @NotNull
-    Optional<Warp> getWarp(@NotNull final String name);
+    Optional<Warp> find(@NotNull final String name);
 
     @NotNull
     Collection<Warp> getWarps();
+
+    @NotNull
+    List<Warp> getSortedWarps();
 
 }

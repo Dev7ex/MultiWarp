@@ -7,6 +7,7 @@ import com.dev7ex.multiwarp.module.DefaultWarpModule;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -27,10 +28,10 @@ public class DefaultWarpRegistry extends DefaultWarpModule implements WarpRegist
     @Override
     public void onEnable() {
         this.warps.clear();
-        this.multiWarpApi.getWarpRepository().sanitize();
+        this.multiWarpApi.getWarpRepository().cleanup();
 
-        for (final Warp warp : this.multiWarpApi.getWarpRepository().loadAll()) {
-            final Optional<Warp> registeredWarp = this.getWarp(warp.getName());
+        for (final Warp warp : this.multiWarpApi.getWarpRepository().findAll()) {
+            final Optional<Warp> registeredWarp = this.find(warp.getName());
 
             if (registeredWarp.isPresent()) {
                 this.multiWarpApi.getLogger().warning(String.format("Skipping Warp %s: name conflicts with %s",
@@ -63,12 +64,17 @@ public class DefaultWarpRegistry extends DefaultWarpModule implements WarpRegist
     }
 
     @Override
-    public @NotNull Optional<Warp> getWarp(@NotNull final String name) {
+    public @NotNull Optional<Warp> find(@NotNull final String name) {
         return Optional.ofNullable(this.warps.get(this.toKey(name)));
     }
 
     @Override
     public @NotNull Collection<Warp> getWarps() {
+        return List.copyOf(this.warps.values());
+    }
+
+    @Override
+    public @NotNull List<Warp> getSortedWarps() {
         return this.warps.values().stream()
                 .sorted()
                 .toList();

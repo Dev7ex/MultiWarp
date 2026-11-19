@@ -12,20 +12,22 @@ import java.util.Optional;
  */
 public interface WarpRepository extends ConfigurationBase {
 
-    void save(@NotNull final Warp warp);
+    void create(@NotNull final Warp warp);
+
+    void update(@NotNull final Warp warp);
 
     void rename(@NotNull final String oldName, @NotNull final Warp warp);
 
     void delete(@NotNull final String name);
 
-    boolean contains(@NotNull final String name);
+    boolean exists(@NotNull final String name);
 
     @NotNull
-    Optional<Warp> load(@NotNull final String name);
+    Optional<Warp> find(@NotNull final String name);
 
     @NotNull
-    Collection<Warp> loadAll();
+    Collection<Warp> findAll();
 
-    void sanitize();
+    void cleanup();
 
 }
