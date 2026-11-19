@@ -23,6 +23,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.plugin.ServicePriority;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.Arrays;
@@ -128,6 +129,10 @@ public class MultiWarpPlugin extends AdvancedPlugin implements MultiWarpApi {
         this.warpRepository = new DefaultWarpRepository(this);
         this.warpRepository.createFile();
         this.warpRepository.loadFile();
+    }
+
+    public static MultiWarpPlugin getInstance() {
+        return JavaPlugin.getPlugin(MultiWarpPlugin.class);
     }
 
 }
