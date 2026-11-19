@@ -1,9 +1,9 @@
 package com.dev7ex.multiwarp.command;
 
-import com.dev7ex.multicommon.api.bukkit.command.PaperCommandArgument;
 import com.dev7ex.multicommon.api.command.PaperCommand;
-import com.dev7ex.multicommon.api.command.completer.ArgumentTabCompleter;
+import com.dev7ex.multicommon.api.command.PaperCommandArgument;
 import com.dev7ex.multicommon.api.command.PaperCommandProperties;
+import com.dev7ex.multicommon.api.command.completer.ArgumentTabCompleter;
 import com.dev7ex.multiwarp.MultiWarpPlugin;
 import com.dev7ex.multiwarp.api.localization.WarpLocalizationEntry;
 import com.dev7ex.multiwarp.api.localization.WarpLocalizationRegistry;
@@ -25,8 +25,15 @@ public class WarpCommand extends PaperCommand implements ArgumentTabCompleter {
         super(plugin);
         this.localizationRegistry = plugin.getLocalizationRegistry();
 
-        this.registerSubCommand(new ListCommand(plugin));
+        this.registerSubCommand(new ConfigCommand(plugin));
+        this.registerSubCommand(new CreateCommand(plugin));
+        this.registerSubCommand(new DeleteCommand(plugin));
         this.registerSubCommand(new HelpCommand(plugin));
+        this.registerSubCommand(new InfoCommand(plugin));
+        this.registerSubCommand(new ListCommand(plugin));
+        this.registerSubCommand(new LockCommand(plugin));
+        this.registerSubCommand(new TeleportCommand(plugin));
+        this.registerSubCommand(new VersionCommand(plugin));
     }
 
     @Override

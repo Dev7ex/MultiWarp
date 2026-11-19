@@ -1,6 +1,6 @@
 package com.dev7ex.multiwarp.command.warp;
 
-import com.dev7ex.multicommon.api.bukkit.command.PaperCommandArgument;
+import com.dev7ex.multicommon.api.command.PaperCommandArgument;
 import com.dev7ex.multicommon.api.command.PaperCommand;
 import com.dev7ex.multicommon.api.command.PaperCommandProperties;
 import com.dev7ex.multicommon.api.command.completer.ArgumentTabCompleter;
