@@ -16,6 +16,7 @@
     <modules>
         <module>multiwarp-paper</module>
         <module>multiwarp-api</module>
+        <module>multiwarp-resources</module>
     </modules>
 
     <properties>
