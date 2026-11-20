@@ -1,11 +1,13 @@
 package com.dev7ex.multiwarp.warp;
 
 import com.dev7ex.multiwarp.api.MultiWarpApi;
-import com.dev7ex.multiwarp.api.warp.Warp;
-import com.dev7ex.multiwarp.api.warp.WarpFactory;
-import com.dev7ex.multiwarp.api.warp.WarpLocation;
-import com.dev7ex.multiwarp.api.warp.WarpManager;
-import com.dev7ex.multiwarp.api.warp.WarpProperty;
+import com.dev7ex.multiwarp.api.event.warp.WarpCreateEvent;
+import com.dev7ex.multiwarp.api.localization.WarpLocalizationEntry;
+import com.dev7ex.multiwarp.api.localization.WarpLocalizationRegistry;
+import com.dev7ex.multiwarp.api.warp.*;
+import net.kyori.adventure.audience.Audience;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.jetbrains.annotations.NotNull;
@@ -19,9 +21,11 @@ import java.util.concurrent.CompletableFuture;
 public class DefaultWarpManager implements WarpManager {
 
     private final MultiWarpApi multiWarpApi;
+    private final WarpLocalizationRegistry localizationRegistry;
 
     public DefaultWarpManager(@NotNull final MultiWarpApi multiWarpApi) {
         this.multiWarpApi = multiWarpApi;
+        this.localizationRegistry = multiWarpApi.getLocalizationRegistry();
     }
 
     @Override
@@ -29,9 +33,42 @@ public class DefaultWarpManager implements WarpManager {
         this.checkAbsent(name);
 
         final Warp warp = this.multiWarpApi.getWarpFactory().createWarp(name, location);
+
         this.multiWarpApi.getWarpRepository().create(warp);
         this.multiWarpApi.getWarpRegistry().register(warp);
         return warp;
+    }
+
+    @Override
+    public synchronized Warp create(@NotNull final Audience audience, @NotNull final String name, @NotNull final WarpLocation location) {
+        this.checkAbsent(name);
+
+        final Warp warp = this.multiWarpApi.getWarpFactory().createWarp(name, location);
+        final WarpCreateEvent event = new WarpCreateEvent(warp);
+
+        Bukkit.getPluginManager().callEvent(event);
+
+        if (event.isCancelled()) {
+            if (event.isNotifyOnCancel()) {
+                audience.sendMessage(this.localizationRegistry.resolveComponent(audience, WarpLocalizationEntry.COMMAND_WARP_CREATE_CANCELLED)
+                        .replaceText(builder -> builder.match("%warp_colored_name%").replacement(warp.getColoredName())));
+            }
+            return null;
+        }
+
+        this.multiWarpApi.getWarpRepository().create(event.getWarp());
+        this.multiWarpApi.getWarpRegistry().register(event.getWarp());
+        return event.getWarp();
+    }
+
+    @Override
+    public synchronized Warp create(@NotNull final Audience audience, @NotNull final String name, @NotNull final Player player) {
+        return this.create(audience, name, WarpLocation.of(player.getLocation()));
+    }
+
+    @Override
+    public synchronized Warp create(@NotNull final Audience audience, @NotNull final String name, @NotNull final Location location) {
+        return this.create(audience, name, WarpLocation.of(location));
     }
 
     @Override

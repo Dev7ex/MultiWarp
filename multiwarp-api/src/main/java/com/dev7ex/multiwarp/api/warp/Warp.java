@@ -1,6 +1,7 @@
 
 package com.dev7ex.multiwarp.api.warp;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -47,7 +48,7 @@ public interface Warp extends Comparable<Warp>, Cloneable {
 
     boolean isLocked();
 
-    void setLocked(boolean locked);
+    void setLocked(final boolean locked);
 
     @NotNull
     WarpLocation getLocation();
@@ -57,6 +58,16 @@ public interface Warp extends Comparable<Warp>, Cloneable {
     @NotNull
     default String getCanonicalName() {
         return this.getName().toLowerCase(Locale.ROOT);
+    }
+
+    @NotNull
+    default Component getColoredName() {
+        return Component.text(this.getName(), this.getColor());
+    }
+
+    @NotNull
+    default Component getColoredDisplayName() {
+        return Component.text(this.getDisplayName(), this.getColor());
     }
 
     @Override

@@ -1,6 +1,31 @@
 {
   "command": {
     "warp": {
+      "config": {
+        "help": {
+          "1": [
+            {
+              "text": "§7» §7/world config §ehelp §7<Seite>",
+              "hover": "§7Zeigt eine Hilfeseite an. \n \n§9Beispiel: §7/world config help 1 \n \n§a§n§oKlicke um diesen Befehl in den Chat zu übernehmen",
+              "click": {"action": "SUGGEST_COMMAND", "text": "/warp config help "}
+            },
+            {
+              "text": "§7» §7/world config §ereload",
+              "hover": "§7Lädt die config.json von MultiWarp neu \n \n§9Info: §cEin Server Neustart ist empfehlenswert \n \n§a§n§oKlicke um diesen Befehl auszuführen",
+              "click": {"action": "RUN_COMMAND", "text": "/warp config reload"}
+            },
+            {"text": ""},
+            {"text": "§eTipp: §7Verwende §eTab §7für Auto-Vervollständigung!"},
+            {"text": "§eTipp: §7Verwende die §ePfeile §7zum Navigieren"},
+            {"text": ""}
+          ]
+        },
+        "reload": {
+          "usage": "%prefix% §cVerwendung: /world config reload",
+          "starting": "%prefix% §7Die §aKonfigurationsdatei §7wird neu geladen...",
+          "finishing": "%prefix% §7Die §aKonfigurationsdatei §7wurde erfolgreich neu geladen"
+        }
+      },
       "create": {
         "usage": "%prefix% §cVerwendung: /warp create <Name>",
         "starting": "%prefix% §7Der §eWarp %warp_name% §7wird erstellt...",

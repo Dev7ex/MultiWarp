@@ -1,10 +1,6 @@
 package com.dev7ex.multiwarp.api.warp;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -47,6 +43,23 @@ public class WarpLocation {
         this.z = z;
         this.yaw = yaw;
         this.pitch = pitch;
+    }
+
+    @NotNull
+    public static WarpLocation of(@NotNull final Location location) {
+        final World world = location.getWorld();
+
+        if (world == null) {
+            throw new IllegalArgumentException(String.format("Location has no world: %s", location));
+        }
+        return WarpLocation.builder()
+                .setWorldName(world.getName())
+                .setX(location.getX())
+                .setY(location.getY())
+                .setZ(location.getZ())
+                .setYaw(location.getYaw())
+                .setPitch(location.getPitch())
+                .build();
     }
 
     @NotNull

@@ -1,5 +1,7 @@
 package com.dev7ex.multiwarp.api.warp;
 
+import net.kyori.adventure.audience.Audience;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,6 +15,12 @@ public interface WarpManager {
 
     @NotNull
     Warp createWarp(@NotNull final String name, @NotNull final WarpLocation location);
+
+    Warp create(@NotNull final Audience audience, @NotNull final String name, @NotNull final WarpLocation location);
+
+    Warp create(@NotNull final Audience audience, @NotNull final String name, @NotNull final Player player);
+
+    Warp create(@NotNull final Audience audience, @NotNull final String name, @NotNull final Location location);
 
     void deleteWarp(@NotNull final String name);
 
