@@ -51,7 +51,7 @@ public class CreateCommand extends PaperCommand implements EmptyTabCompleter {
                     .replaceText(builder -> builder.match("%warp_colored_display_name%").replacement(warp.getColoredDisplayName())));
 
         }, () -> {
-            this.warpManager.createWarp(warpName, WarpLocation.fromLocation(player.getLocation()));
+            this.warpManager.create(commandSender, warpName, WarpLocation.fromLocation(player.getLocation()));
             player.playSound(Sound.sound().type(SoundEventKeys.BLOCK_ANVIL_USE).build());
         });
     }
