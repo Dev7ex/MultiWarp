@@ -6,7 +6,7 @@
 
     <groupId>com.dev7ex</groupId>
     <artifactId>multiwarp</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>MultiWarp</name>
@@ -23,17 +23,23 @@
         <maven.compiler.source>${project.source.version}</maven.compiler.source>
         <maven.compiler.target>${project.source.version}</maven.compiler.target>
 
-        <project.source.version>17</project.source.version>
+        <project.minecraft.version>1.17</project.minecraft.version>
+        <project.source.version>21</project.source.version>
         <project.source.encoding>UTF-8</project.source.encoding>
 
+        <maven.jar.plugin.version>3.4.2</maven.jar.plugin.version>
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
         <maven.shade.plugin.version>3.6.0</maven.shade.plugin.version>
         <maven.javadoc.plugin.version>3.8.0</maven.javadoc.plugin.version>
 
-        <dependency.annotations.version>24.0.1</dependency.annotations.version>
-        <dependency.facilis.common.version>1.0.6-SNAPSHOT</dependency.facilis.common.version>
-        <dependency.lombok.version>1.18.30</dependency.lombok.version>
-        <dependency.spigot.api.version>1.16.5-R0.1-SNAPSHOT</dependency.spigot.api.version>
+        <dependency.adventure.platform.version>4.3.3</dependency.adventure.platform.version>
+        <dependency.adventure.api.version>4.17.0</dependency.adventure.api.version>
+        <dependency.annotations.version>24.1.0</dependency.annotations.version>
+        <dependency.multicommon.version>1.0.0-SNAPSHOT</dependency.multicommon.version>
+        <dependency.nbt.version>2.12.0</dependency.nbt.version>
+        <dependency.commons.io.version>2.14.0</dependency.commons.io.version>
+        <dependency.lombok.version>1.18.34</dependency.lombok.version>
+        <dependency.paper.api.version>1.21.4-R0.1-SNAPSHOT</dependency.paper.api.version>
     </properties>
 
 </project>
